@@ -1,5 +1,6 @@
 ﻿using System;
 using BlogDev.Models;
+using BlogDev.Repositories;
 using Dapper.Contrib.Extensions;
 using Microsoft.Data.SqlClient;
 
@@ -13,38 +14,35 @@ namespace BlogDev
         {
             Console.Clear();
             Console.WriteLine("** Blog **\n");
-            // ReadUsers();
-            // ReadUser();
-            // CreateUser();
+
+            var sqlConnection = new SqlConnection(_connectionString);
+            sqlConnection.Open();
+            ReadUsers(sqlConnection);
+            // ReadUser(sqlConnection);
+            // CreateUser(sqlConnection);
             // UpdateUser();
-            DeleteUser();
+            // DeleteUser();
+            sqlConnection.Close();
         }
 
-        static void ReadUsers()
+        static void ReadUsers(SqlConnection sqlConnection)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var users = connection.GetAll<User>();
+            var userRepository = new UserRepository(sqlConnection);
+            var users = userRepository.GetAll();
 
-                foreach (var user in users)
-                {
-                    Console.WriteLine(user.Name);
-                }
-            }
+            foreach (var user in users)
+                Console.WriteLine(user.Name);
         }
 
-        static void ReadUser()
+        static void ReadUser(SqlConnection sqlConnection)
         {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var id = 2;
-                var user = connection.Get<User>(id);
+            var userRepository = new UserRepository(sqlConnection);
+            var user = userRepository.Get(2);
 
-                Console.WriteLine($"{user.Name} - {user.Email}");
-            }
+            Console.WriteLine(user.Name);
         }
 
-        static void CreateUser()
+        static void CreateUser(SqlConnection sqlConnection)
         {
             var user = new User()
             {
@@ -56,11 +54,9 @@ namespace BlogDev
                 Slug = "dev-senior"
             };
 
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Insert<User>(user);
-                Console.WriteLine("Usuário cadastrado com sucesso!");
-            }
+            var userRepository = new UserRepository(sqlConnection);
+            userRepository.Create(user);
+            Console.WriteLine("Usuário cadastrado com sucesso.");
         }
 
         static void UpdateUser()
