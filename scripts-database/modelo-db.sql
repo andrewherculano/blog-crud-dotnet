@@ -7,7 +7,7 @@ use [BlogDev]
 -- table user
 create table [User] (
     [Id] int not null identity(1, 1),
-    [Name] nvarchar not null,
+    [Name] nvarchar(100) not null,
     [Email] varchar(200) not null,
     [PasswordHash] varchar(255) not null,
     [Bio] text not null,
