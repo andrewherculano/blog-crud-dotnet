@@ -18,76 +18,27 @@ namespace BlogDev
             var sqlConnection = new SqlConnection(_connectionString);
             sqlConnection.Open();
             ReadUsers(sqlConnection);
-            // ReadUser(sqlConnection);
-            // CreateUser(sqlConnection);
-            // UpdateUser();
-            // DeleteUser();
+            Console.WriteLine();
+            ReadRoles(sqlConnection);
             sqlConnection.Close();
         }
 
         static void ReadUsers(SqlConnection sqlConnection)
         {
-            var userRepository = new UserRepository(sqlConnection);
+            var userRepository = new Repository<User>(sqlConnection);
             var users = userRepository.GetAll();
 
             foreach (var user in users)
                 Console.WriteLine(user.Name);
         }
 
-        static void ReadUser(SqlConnection sqlConnection)
+        static void ReadRoles(SqlConnection sqlConnection)
         {
-            var userRepository = new UserRepository(sqlConnection);
-            var user = userRepository.Get(2);
+            var roleRepository = new Repository<Role>(sqlConnection);
+            var roles = roleRepository.GetAll();
 
-            Console.WriteLine(user.Name);
-        }
-
-        static void CreateUser(SqlConnection sqlConnection)
-        {
-            var user = new User()
-            {
-                Name = "Ermione G.",
-                Email = "de@senior.com.br",
-                PasswordHash = "HASH",
-                Bio = "Dev Senior",
-                Image = "http://img.com",
-                Slug = "dev-senior"
-            };
-
-            var userRepository = new UserRepository(sqlConnection);
-            userRepository.Create(user);
-            Console.WriteLine("Usuário cadastrado com sucesso.");
-        }
-
-        static void UpdateUser()
-        {
-            var userUpdate = new User()
-            {
-                Id = 1002,
-                Name = "Hermione Granger",
-                Email = "hermione@gg.com.br",
-                PasswordHash = "HASH",
-                Bio = "Dev Senior",
-                Image = "http://img.com",
-                Slug = "dev-senior"
-            };
-
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                connection.Update<User>(userUpdate);
-                Console.WriteLine($"Usuário atualizado com sucesso!");
-            }
-        }
-
-        static void DeleteUser()
-        {
-            using (var connection = new SqlConnection(_connectionString))
-            {
-                var user = connection.Get<User>(1002);
-                connection.Delete<User>(user);
-
-                Console.WriteLine($"Usuário {user.Name} deletedo com sucesso!");
-            }
+            foreach (var role in roles)
+                Console.WriteLine($"{role.Id} - {role.Name}");
         }
     }
 }

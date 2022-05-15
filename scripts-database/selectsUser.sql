@@ -1,6 +1,5 @@
-use [BlogDev]
+USE [BlogDev]
 
-select top 100
-    *
-from
-    [User]
+SELECT TOP 100 * FROM [User]
+
+SELECT TOP 100 * FROM [Role]

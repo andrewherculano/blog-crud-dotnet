@@ -27,7 +27,33 @@ namespace BlogDev.Repositories
 
         public void Create(User user)
         {
+            user.Id = 0;
             _sqlConnection.Insert<User>(user);
+        }
+
+        public void Update(User user)
+        {
+            if (user.Id != 0)
+            {
+                _sqlConnection.Update<User>(user);
+            }
+        }
+
+        public void Delete(User user)
+        {
+            if (user.Id != 0)
+            {
+                _sqlConnection.Delete<User>(user);
+            }
+        }
+
+        public void Delete(int id)
+        {
+            if (id != 0)
+                return;
+
+            var user = _sqlConnection.Get<User>(id);
+            _sqlConnection.Delete<User>(user);
         }
     }
 }

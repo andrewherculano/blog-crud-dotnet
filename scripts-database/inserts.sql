@@ -21,3 +21,17 @@ values (
     'https://img2.com',
     'harry-potter'
 )
+
+insert into 
+    [Role]
+values (
+    'Autor',
+    'autor'
+)
+
+insert into 
+    [Role]
+values (
+    'Premium',
+    'premium'
+)
