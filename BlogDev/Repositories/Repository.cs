@@ -17,5 +17,31 @@ namespace BlogDev.Repositories
         {
             return _sqlConnection.GetAll<TModel>();
         }
+
+        public TModel Get(int id)
+        {
+            return _sqlConnection.Get<TModel>(id);
+        }
+
+        public void Create(TModel model)
+        {
+            _sqlConnection.Insert<TModel>(model);
+        }
+
+        public void Update(TModel model)
+        {
+            _sqlConnection.Update<TModel>(model);
+        }
+
+        public void Delete(TModel model)
+        {
+            _sqlConnection.Delete<TModel>(model);
+        }
+
+        public void Delete(int id)
+        {
+            var model = _sqlConnection.Get<TModel>(id);
+            _sqlConnection.Delete<TModel>(model);
+        }
     }
 }

@@ -1,6 +1,6 @@
 using Dapper.Contrib.Extensions;
 
-namespace BlogDev.Repositories
+namespace BlogDev.Models
 {
     [Table("[Role]")]
     public class Role

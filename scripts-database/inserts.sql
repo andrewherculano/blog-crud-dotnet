@@ -35,3 +35,12 @@ values (
     'Premium',
     'premium'
 )
+
+insert into 
+    [Tag]
+values (
+    'ASP.NET',
+    'asp-net'
+)
+
+insert into [UserRole] values (1, 1)

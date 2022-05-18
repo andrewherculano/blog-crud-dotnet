@@ -1,59 +1,55 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using BlogDev.Models;
-using Dapper.Contrib.Extensions;
+using Dapper;
 using Microsoft.Data.SqlClient;
 
 namespace BlogDev.Repositories
 {
-    public class UserRepository
+    public class UserRepository : Repository<User>
     {
         private readonly SqlConnection _sqlConnection;
 
-        public UserRepository(SqlConnection sqlConnetion)
+        public UserRepository(SqlConnection sqlConnection)
+            : base(sqlConnection)
         {
-            _sqlConnection = sqlConnetion;
+            _sqlConnection = sqlConnection;
         }
 
-        public IEnumerable<User> GetAll()
+        public List<User> GetWithRoles()
         {
-            return _sqlConnection.GetAll<User>();
-        }
+            var query = @"
+                SELECT [User].*, [Role].*
+                FROM [User]
+                    LEFT JOIN [UserRole] ON [UserRole].[UserId] = [User].[Id]
+                    LEFT JOIN [Role] ON [UserRole].[RoleId] = [Role].[Id]";
 
-        public User Get(int id)
-        {
-            return _sqlConnection.Get<User>(id);
-        }
+            var users = new List<User>();
 
-        public void Create(User user)
-        {
-            user.Id = 0;
-            _sqlConnection.Insert<User>(user);
-        }
+            var items = _sqlConnection.Query<User, Role, User>(
+                query,
+                (user, role) =>
+                {
+                    var usr = users.FirstOrDefault(x => x.Id == user.Id);
+                    if (usr == null)
+                    {
+                        usr = user;
 
-        public void Update(User user)
-        {
-            if (user.Id != 0)
-            {
-                _sqlConnection.Update<User>(user);
-            }
-        }
+                        if (role != null)
+                            usr.Roles.Add(role);
 
-        public void Delete(User user)
-        {
-            if (user.Id != 0)
-            {
-                _sqlConnection.Delete<User>(user);
-            }
-        }
+                        users.Add(usr);
+                    }
+                    else
+                    {
+                        usr.Roles.Add(role);
+                    }
 
-        public void Delete(int id)
-        {
-            if (id != 0)
-                return;
+                    return user;
+                }, splitOn: "Id"
+            );
 
-            var user = _sqlConnection.Get<User>(id);
-            _sqlConnection.Delete<User>(user);
+            return users;
         }
     }
 }
