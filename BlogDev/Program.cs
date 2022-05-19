@@ -1,7 +1,5 @@
 ﻿using System;
-using BlogDev.Models;
-using BlogDev.Repositories;
-using Dapper.Contrib.Extensions;
+using BlogDev.Screens.TagScreens;
 using Microsoft.Data.SqlClient;
 
 namespace BlogDev
@@ -12,56 +10,41 @@ namespace BlogDev
 
         static void Main(string[] args)
         {
+            Database.Connection = new SqlConnection(_connectionString);
+            Database.Connection.Open();
+
+            Load();
+
+            Database.Connection.Close();
+        }
+
+        public static void Load()
+        {
             Console.Clear();
-            Console.WriteLine("** Blog **\n");
+            Console.WriteLine("** Blog **");
 
-            var sqlConnection = new SqlConnection(_connectionString);
-            sqlConnection.Open();
+            Console.WriteLine("O que deseja fazer?\n");
 
-            ReadUsersWithRoles(sqlConnection);
+            Console.WriteLine("1 - Gestão de usuário");
+            Console.WriteLine("2 - Gestão de Perfil");
+            Console.WriteLine("3 - Gestão de Categoria");
+            Console.WriteLine("4 - Gestão de Tag");
 
-            sqlConnection.Close();
-        }
+            Console.Write("\nEscolha a opção desejada: ");
+            var option = short.Parse(Console.ReadLine());
 
-        static void ReadUsersWithRoles(SqlConnection sqlConnection)
-        {
-            var userRepository = new UserRepository(sqlConnection);
-            var users = userRepository.GetWithRoles();
-
-            foreach (var user in users)
+            switch (option)
             {
-                Console.WriteLine(user.Name);
-                foreach (var role in user.Roles)
-                {
-                    Console.WriteLine($" -{role.Name}");
-                }
+                case 1:
+                    TagScreen.Load();
+                    break;
+                case 4:
+                    TagScreen.Load();
+                    break;
+                default:
+                    Console.WriteLine("Opção invalida!");
+                    break;
             }
-        }
-
-        static void ReadUsers(SqlConnection sqlConnection)
-        {
-            var userRepository = new Repository<User>(sqlConnection);
-            var users = userRepository.GetAll();
-
-            foreach (var user in users)
-                Console.WriteLine(user.Name);
-        }
-
-        static void ReadRoles(SqlConnection sqlConnection)
-        {
-            var roleRepository = new Repository<Role>(sqlConnection);
-            var roles = roleRepository.GetAll();
-
-            foreach (var role in roles)
-                Console.WriteLine($"{role.Id} - {role.Name}");
-        }
-
-        static void ReadTag(SqlConnection sqlConnection)
-        {
-            var tagRepository = new Repository<Tag>(sqlConnection);
-            var tag = tagRepository.Get(1);
-
-            Console.WriteLine($"{tag.Name} - {tag.Slug}");
         }
     }
 }
