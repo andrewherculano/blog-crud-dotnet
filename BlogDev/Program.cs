@@ -1,5 +1,4 @@
-﻿using System;
-using BlogDev.Screens.TagScreens;
+﻿using BlogDev.Screens;
 using Microsoft.Data.SqlClient;
 
 namespace BlogDev
@@ -13,38 +12,9 @@ namespace BlogDev
             Database.Connection = new SqlConnection(_connectionString);
             Database.Connection.Open();
 
-            Load();
+            MenuScreen.Load();
 
             Database.Connection.Close();
-        }
-
-        public static void Load()
-        {
-            Console.Clear();
-            Console.WriteLine("** Blog **");
-
-            Console.WriteLine("O que deseja fazer?\n");
-
-            Console.WriteLine("1 - Gestão de usuário");
-            Console.WriteLine("2 - Gestão de Perfil");
-            Console.WriteLine("3 - Gestão de Categoria");
-            Console.WriteLine("4 - Gestão de Tag");
-
-            Console.Write("\nEscolha a opção desejada: ");
-            var option = short.Parse(Console.ReadLine());
-
-            switch (option)
-            {
-                case 1:
-                    TagScreen.Load();
-                    break;
-                case 4:
-                    TagScreen.Load();
-                    break;
-                default:
-                    Console.WriteLine("Opção invalida!");
-                    break;
-            }
         }
     }
 }

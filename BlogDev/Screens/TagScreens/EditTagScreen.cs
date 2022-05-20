@@ -36,13 +36,17 @@ namespace BlogDev.Screens.TagScreens
         {
             try
             {
+                if (string.IsNullOrEmpty(tag.Name) || string.IsNullOrEmpty(tag.Slug))
+                {
+                    throw new Exception("Não é possivel salvar valores nulos ou vazios.");
+                }
+
                 var repository = new Repository<Tag>(Database.Connection);
                 repository.Update(tag);
                 Console.WriteLine("\nTag atualizada com sucesso!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Não foi possível atualizar os dados!");
                 Console.WriteLine($"{ex.Message}");
             }
         }

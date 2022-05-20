@@ -18,8 +18,11 @@ namespace BlogDev.Screens.TagScreens
             Console.Write("Slug: ");
             var slug = Console.ReadLine();
 
-            var tag = new Tag(name, slug);
-            Create(tag);
+            Create(new Tag
+            {
+                Name = name,
+                Slug = slug
+            });
 
             Console.ReadKey();
             TagScreen.Load();
@@ -29,14 +32,18 @@ namespace BlogDev.Screens.TagScreens
         {
             try
             {
+                if (string.IsNullOrEmpty(tag.Name) || string.IsNullOrEmpty(tag.Slug))
+                {
+                    throw new Exception("Não é possivel salvar valores nulos ou vazios.");
+                }
+
                 var repository = new Repository<Tag>(Database.Connection);
                 repository.Create(tag);
                 Console.WriteLine("\nTag cadastrada com sucesso!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Não foi possível salvar os dados!");
-                Console.WriteLine($"{ex.Message}");
+                Console.WriteLine($"\n{ex.Message}");
             }
         }
     }

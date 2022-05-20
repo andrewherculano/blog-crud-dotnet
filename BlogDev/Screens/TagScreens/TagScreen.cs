@@ -34,7 +34,7 @@ namespace BlogDev.Screens.TagScreens
                     DeleteTagScreen.Load();
                     break;
                 case 0:
-                    Program.Load();
+                    MenuScreen.Load();
                     break;
                 default:
                     Console.WriteLine("Opção invalida!");
