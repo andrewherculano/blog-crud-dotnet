@@ -1,4 +1,5 @@
 using System;
+using BlogDev.Screens.CategoryScreens;
 using BlogDev.Screens.TagScreens;
 using BlogDev.Screens.UserScreens;
 
@@ -25,6 +26,9 @@ namespace BlogDev.Screens
             {
                 case 1:
                     UserScreen.Load();
+                    break;
+                case 3:
+                    CategoryScreen.Load();
                     break;
                 case 4:
                     TagScreen.Load();

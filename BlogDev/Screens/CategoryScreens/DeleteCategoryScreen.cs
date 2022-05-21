@@ -2,15 +2,15 @@ using System;
 using BlogDev.Models;
 using BlogDev.Repositories;
 
-namespace BlogDev.Screens.UserScreens
+namespace BlogDev.Screens.CategoryScreens
 {
-    public static class DeleteUserScreen
+    public static class DeleteCategoryScreen
     {
         public static void Load()
         {
             Console.Clear();
 
-            Console.WriteLine("** Excluir usuário **\n");
+            Console.WriteLine("** Excluir Categoria **\n");
 
             Console.Write("Id: ");
             var id = int.Parse(Console.ReadLine());
@@ -18,20 +18,21 @@ namespace BlogDev.Screens.UserScreens
             Delete(id);
 
             Console.ReadKey();
-            UserScreen.Load();
+            CategoryScreen.Load();
         }
 
         private static void Delete(int id)
         {
             try
             {
-                var repository = new Repository<User>(Database.Connection);
+                var repository = new Repository<Category>(Database.Connection);
                 repository.Delete(id);
-                Console.WriteLine("\nUsuário excluído com sucesso!");
+                Console.WriteLine("\nCategoria exluída com sucesso!");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"{ex.Message}");
+                Console.WriteLine("Não foi possível exluir a categoria");
+                Console.WriteLine(ex.Message);
             }
         }
     }
