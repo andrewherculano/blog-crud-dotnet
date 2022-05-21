@@ -1,5 +1,6 @@
 using System;
 using BlogDev.Screens.CategoryScreens;
+using BlogDev.Screens.RoleScreens;
 using BlogDev.Screens.TagScreens;
 using BlogDev.Screens.UserScreens;
 
@@ -26,6 +27,9 @@ namespace BlogDev.Screens
             {
                 case 1:
                     UserScreen.Load();
+                    break;
+                case 2:
+                    RoleScreen.Load();
                     break;
                 case 3:
                     CategoryScreen.Load();
