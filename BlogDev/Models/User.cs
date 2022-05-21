@@ -9,6 +9,8 @@ namespace BlogDev.Models
         public User()
         {
             Roles = new List<Role>();
+            PasswordHash = "HASH";
+            Image = "http://img.com";
         }
 
         public int Id { get; set; }

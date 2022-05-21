@@ -10,7 +10,7 @@ namespace BlogDev.Screens.TagScreens
         {
             Console.Clear();
 
-            Console.WriteLine("** Excluir tag **\n");
+            Console.WriteLine("** Editar tag **\n");
 
             Console.Write("Id: ");
             var id = int.Parse(Console.ReadLine());

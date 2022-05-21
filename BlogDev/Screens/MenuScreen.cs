@@ -1,5 +1,6 @@
 using System;
 using BlogDev.Screens.TagScreens;
+using BlogDev.Screens.UserScreens;
 
 namespace BlogDev.Screens
 {
@@ -23,7 +24,7 @@ namespace BlogDev.Screens
             switch (option)
             {
                 case 1:
-                    TagScreen.Load();
+                    UserScreen.Load();
                     break;
                 case 4:
                     TagScreen.Load();
