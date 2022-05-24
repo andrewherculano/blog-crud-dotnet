@@ -1,5 +1,6 @@
 using System;
 using BlogDev.Screens.CategoryScreens;
+using BlogDev.Screens.PostScreens;
 using BlogDev.Screens.RoleScreens;
 using BlogDev.Screens.TagScreens;
 using BlogDev.Screens.UserScreens;
@@ -19,6 +20,7 @@ namespace BlogDev.Screens
             Console.WriteLine("2 - Gestão de perfil");
             Console.WriteLine("3 - Gestão de categoria");
             Console.WriteLine("4 - Gestão de tag");
+            Console.WriteLine("5 - Gestão de post");
 
             Console.Write("\nEscolha a opção desejada: ");
             var option = short.Parse(Console.ReadLine());
@@ -36,6 +38,9 @@ namespace BlogDev.Screens
                     break;
                 case 4:
                     TagScreen.Load();
+                    break;
+                case 5:
+                    PostScreen.Load();
                     break;
                 default:
                     Console.WriteLine("Opção invalida!");
