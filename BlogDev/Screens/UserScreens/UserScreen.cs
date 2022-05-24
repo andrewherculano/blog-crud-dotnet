@@ -14,6 +14,7 @@ namespace BlogDev.Screens.UserScreens
             Console.WriteLine("2 - Cadastrar um usuário");
             Console.WriteLine("3 - Editar um usuário");
             Console.WriteLine("4 - Excluir um usuário");
+            Console.WriteLine("5 - Perfil de usuário");
             Console.WriteLine("0 - Voltar para o menu principal\n");
 
             Console.Write("Escolha a opção desejada: ");
@@ -32,6 +33,9 @@ namespace BlogDev.Screens.UserScreens
                     break;
                 case 4:
                     DeleteUserScreen.Load();
+                    break;
+                case 5:
+                    CreateUserRole.Load();
                     break;
                 case 0:
                     MenuScreen.Load();

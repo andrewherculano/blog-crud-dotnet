@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using BlogDev.Models;
 using Dapper;
@@ -16,13 +17,30 @@ namespace BlogDev.Repositories
             _sqlConnection = sqlConnection;
         }
 
+        public void CreateWithRole(int userId, int roleId)
+        {
+            var user = new User();
+            var role = new Role();
+
+            user.Id = userId;
+            role.Id = roleId;
+
+            var query = @"INSERT INTO [UserRole] VALUES(@UserId, @RoleId)";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("UserId", user.Id, DbType.Int32);
+            parameters.Add("RoleId", role.Id, DbType.Int32);
+
+            _sqlConnection.Execute(query, parameters);
+        }
+
         public List<User> GetWithRoles()
         {
             var query = @"
                 SELECT [User].*, [Role].*
                 FROM [User]
-                    LEFT JOIN [UserRole] ON [UserRole].[UserId] = [User].[Id]
-                    LEFT JOIN [Role] ON [UserRole].[RoleId] = [Role].[Id]";
+                    INNER JOIN [UserRole] ON [UserRole].[UserId] = [User].[Id]
+                    INNER JOIN [Role] ON [UserRole].[RoleId] = [Role].[Id]";
 
             var users = new List<User>();
 
