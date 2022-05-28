@@ -1,0 +1,83 @@
+[33mcommit 2330ec4e8443de654eb00e87089a3450735d9775[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Tue May 24 16:22:31 2022 -0300
+
+    crud post
+
+[33mcommit 6e03462ebeeceb4829baeffef8c01201dd4408df[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Mon May 23 21:17:15 2022 -0300
+
+    vincular um usuario a perfis
+
+[33mcommit 4863ac7c62ed5a407e87c3b46f3f49a8023eb87b[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Sat May 21 18:24:13 2022 -0300
+
+    crud perfil
+
+[33mcommit 49f2d04b2f90c194b09488fa5a26c56f94ef4db7[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Sat May 21 16:52:02 2022 -0300
+
+    crud categorias
+
+[33mcommit 32b2b9892bae257a1f5803107110d816cf187370[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Sat May 21 13:56:19 2022 -0300
+
+    crud users
+
+[33mcommit 12bf6dcec71a3e7490ed3a403452365571a01e09[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Fri May 20 15:06:32 2022 -0300
+
+    validações create e edit tag
+
+[33mcommit c691006129e2c94925978f7efa0b0509982dee1a[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Thu May 19 16:30:39 2022 -0300
+
+    crud tag
+
+[33mcommit 12e71dda1da5d007767bbc3cf67eccde532b2fed[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Wed May 18 19:05:48 2022 -0300
+
+    lendo os dados many to many
+
+[33mcommit fc630eaa90463bde9cdae8aba60d7b9d12312661[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Sun May 15 10:34:22 2022 -0300
+
+    repositorio generico
+
+[33mcommit 4a7adf4085180f43b6c9c009e90ef411189cecb3[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Sat May 14 15:06:36 2022 -0300
+
+    repository user
+
+[33mcommit e1eb342fe946fe6729ed05f53d759595dfc4a24b[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Sat May 14 13:59:08 2022 -0300
+
+    crud simples - dapper contrib
+
+[33mcommit f21314295c53ef5eeb9bef3b0be220cd5ab0efb6[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Fri May 13 15:18:21 2022 -0300
+
+    .gitignore atualizado
+
+[33mcommit 2d0a80ad92d57cda57230335cd06bcf9f76d254f[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Fri May 13 15:15:41 2022 -0300
+
+    add .gitignore
+
+[33mcommit 9dd1145c3f8f8dc4b7bf6a2156bd3037719d606f[m
+Author: Andrew Herculano <andrewherculano@hotmail.com>
+Date:   Fri May 13 14:30:05 2022 -0300
+
+    modelo do banco de dados

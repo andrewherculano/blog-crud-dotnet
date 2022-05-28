@@ -44,3 +44,18 @@ values (
 )
 
 insert into [UserRole] values (1, 1)
+
+INSERT INTO [Category]
+VALUES ('Categoria Teste 1', 'categoria-teste')
+
+
+select * from [Post]
+select * from [Role]
+select * from [Category]
+select * from [User]
+
+insert into [Post] ([CategoryId], [AuthorId], [Title], [Summary], [Body], [Slug], [CreateDate], [LastUpdateDate])
+values (1, 1, 'Post Titulo 1', 'Sumario teste', 'POST BODY', 'post-slug', '01/05/2022', '01/05/2014')
+
+insert into [Post] ([CategoryId], [AuthorId], [Title], [Summary], [Body], [Slug], [CreateDate], [LastUpdateDate])
+values (1, 2, 'Post Titulo 2', 'Sumario 2', 'POST BODY', 'post-2', '10/05/2022', '11/05/2014')
